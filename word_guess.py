@@ -61,13 +61,16 @@ class WordGuesser:
         if guess in self.word:
             for i,x in enumerate(self.word):
                 if guess == x:
-                    self.target[i] = self.word[i]  # Reveal the 
+                    self.target[i] = self.word[i]  # Reveal the correctly guessed letters
                     correct_num+=1
+        
+        # Update user
         if correct_num > 0:
             print(f'Yes, "{guess}" is correct! There {"are" if (correct_num>1) else "is"} {correct_num} of them.')
         else:
             print(f'Sorry, no "{guess}" in word.')
             self.wrong_guesses+=1
+        # Update counts
         self.used_letters += guess
         self.guesses+=1
         
@@ -80,6 +83,8 @@ class WordGuesser:
             print('')
             print(f'GAME OVER! The word was "{self.word}". You guessed {self.guesses} letters.')
             return
+
+        # Display the game board and ask for another guess
         self.display_board()
         return self.take_guess()
         
